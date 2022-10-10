@@ -1,13 +1,16 @@
-FROM node:16.13.1-slim AS bw-builder
+FROM debian:9-slim AS bw
 WORKDIR /w
-RUN apt-get update && apt-get install -y git
-RUN bash -c 'git clone --single-branch --branch master --depth 100 https://github.com/bitwarden/clients.git && git checkout 1abfa63e3aa5f877f22dfab5581383d7dd507845'
-RUN ls -a
+RUN apt-get update && apt-get install -y unzip
+ADD https://github.com/bitwarden/clients/releases/download/cli-v2022.9.0/bw-linux-2022.9.0.zip /w
+RUN unzip /w/bw-linux-*.zip
+RUN chmod +x bw
 
-# FROM amazon/aws-cli
-
-# WORKDIR /app
-
-# ADD https://vault.bitwarden.com/download/?app=cli&platform=linux /app
-# RUN pwd
-# RUN ls -a
+FROM amazon/aws-cli AS aws
+WORKDIR /w
+COPY --from=bw /w/bw /bin/bw
+RUN bw --version
+COPY ./entrypoint.sh /entrypoint.sh
+ENV BW_SECRET_NAME="aws"
+ENV AWS_DEFAULT_REGION="eu-central-1"
+ENTRYPOINT ["/entrypoint.sh"]
+CMD bash
