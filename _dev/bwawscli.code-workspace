@@ -1,0 +1,43 @@
+{
+  "folders": [
+    {
+      "path": ".."
+    },
+  ],
+  "settings": {
+    "terminal.integrated.profiles.linux": {
+      "paranoid": {
+        "path": "/bin/sh",
+        "args": []
+      }
+    },
+    "terminal.integrated.profiles.osx": {
+      "paranoid": {
+        "path": "/bin/sh",
+        "args": []
+      }
+    },
+    "editor.rulers": [
+      96,
+      100
+    ],
+    "editor.minimap.maxColumn": 90,
+    "editor.tabSize": 2,
+    "editor.formatOnPaste": false,
+    "editor.formatOnType": false,
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "all",
+    "editor.fontLigatures": true,
+    "editor.renderControlCharacters": true,
+    "editor.tabCompletion": "on",
+    "files.insertFinalNewline": true,
+    "explorer.autoReveal": true,
+    "git.ignoreLimitWarning": true,
+    "breadcrumbs.enabled": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.folding": true
+  },
+  "extensions": {
+    "recommendations": []
+  }
+}
