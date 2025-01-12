@@ -6,6 +6,12 @@ RUN unzip /w/bw-linux-*.zip
 RUN chmod +x bw
 
 FROM amazon/aws-cli AS aws
+RUN apt-get update && apt-get install -y unzip git
+
+RUN mkdir /sam
+ADD https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip /sam/aws-sam-cli-linux-x86_64.zip
+RUN ls /sam
+
 WORKDIR /w
 COPY --from=bw /w/bw /bin/bw
 RUN bw --version
